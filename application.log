@@ -1,0 +1,12 @@
+2021-10-05 18:27:49,275  INFO [main] HomePage:30 - Entering keyword and clicking on matching result
+2021-10-05 18:27:49,456  INFO [main] ElementUtil:63 - Enterint Text in Field=fiserv
+2021-10-05 18:27:52,328  INFO [main] ElementUtil:111 - Clicking on first element from list =Fiserv
+2021-10-05 18:28:18,139  INFO [main] HomePage:39 - Clicking On Matching search Result button
+2021-10-05 18:28:18,730  INFO [main] ElementUtil:120 - Clicking on first result using JS executor =Fiserv: Financial Services Technology, Mobile Banking ...
+https://www.fiserv.com
+2021-10-05 18:28:55,419  INFO [main] SearchResultWebsite:21 - Accepting web page cookies On Seach button
+2021-10-05 18:28:55,917  INFO [main] ElementUtil:50 - Clicking WebElement If present
+2021-10-05 18:28:56,875  INFO [main] SearchResultWebsite:25 - Get Website Page Title
+2021-10-05 18:28:57,004  INFO [main] ElementUtil:24 - Website Page Title=Financial Services Technology, Mobile Banking, Payments| Fiserv
+2021-10-05 18:28:57,060  INFO [main] SearchResultWebsite:29 - Get Website URL
+2021-10-05 18:28:57,085  INFO [main] ElementUtil:30 - Website URl=https://www.fiserv.com/
