@@ -3,7 +3,6 @@ package com.org.util;
 import java.util.List;
 
 import com.org.helper.LoggerHelper;
-import com.org.pages.HomePage;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -138,6 +137,9 @@ public class ElementUtil {
 		} catch (Exception e) {
 			System.out.println("Unable to click on element "+ e.getStackTrace());
 		}
+	}
+	public void quitBrowser(){
+		driver.quit();
 	}
 }
 

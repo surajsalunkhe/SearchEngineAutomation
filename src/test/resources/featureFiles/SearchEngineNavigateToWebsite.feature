@@ -1,13 +1,9 @@
 @userflow
 Feature: Search Engine Website Navigation
 
-  @regression
-  Scenario Outline:: User search result in search engine and click on first result
-    Given User navigate to search engine
-    And User enter "<keyword>" to search in search Engine
-    When User click on first search suggestion
-    And User clicks on matching "<keyword>" search result
-    Then verify user redirected to "<keyword>" provided website
-  Examples:
-  |browser|search|keyword|
-  |chrome |google|fiserv|
+
+  Scenario:: User search result in search engine and click on first result
+    Given User opens the "chrome"
+    And Navigate to url "https://google.com"
+    And User enter "fiserv" to search in search Engine
+    Then User quite the browser

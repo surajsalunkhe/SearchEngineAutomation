@@ -2,6 +2,8 @@ package appHooks;
 
 import java.io.IOException;
 import java.util.Properties;
+
+import com.org.pages.BasePage;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -23,6 +25,7 @@ public class ApplicationHook {
 	Properties prop;
 	DriverFactory driverfactory;
 	WebDriver driver;
+	BasePage basePage;
 	
 	@Before(order=0)
 	public void setUpConfig()
@@ -30,12 +33,12 @@ public class ApplicationHook {
 		config=new ConfigPropertyReader();
 		 prop=config.getProperty();
 	}
-	@Before(order=1)
+	/*@Before(order=1)
 	public void setUpWebDriver()
 	{
 		 driverfactory=new DriverFactory();
-		 driver=driverfactory.init_Driver(prop);
-	}
+		 driver=driverfactory.init_Driver();
+	}*/
 	
 	@After(order=1)
 	public void captureScreenshot(Scenario sc) throws IOException
@@ -48,11 +51,11 @@ public class ApplicationHook {
 		
 	}
 	
-	@After(order = 0)
+	/*@After(order = 0)
 	public void tearDown() {
 		driver.quit();
 		
-	}
+	}*/
 
 
 

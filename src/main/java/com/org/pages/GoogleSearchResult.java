@@ -6,16 +6,16 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class SearchResult {
+public class GoogleSearchResult {
     WebDriver driver;
     ElementUtil elementutil;
-    Logger log = LoggerHelper.getLogger(SearchResult.class);
-    public SearchResult(WebDriver driver) {
+    Logger log = LoggerHelper.getLogger(GoogleSearchResult.class);
+    private By selectFromSuggestionGoogle=By.xpath("//div[@role='presentation']//div[@role='option']");
+
+    public GoogleSearchResult(WebDriver driver) {
         this.driver=driver;
         elementutil=new ElementUtil(driver);
     }
-    private By selectFromSuggestionGoogle=By.xpath("//div[@role='presentation']//div[@role='option']");
-
     public void userClickOnFirstResult(){
         elementutil.clickOnFirstElementFromList(selectFromSuggestionGoogle);
     }
