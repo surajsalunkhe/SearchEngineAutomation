@@ -10,24 +10,14 @@ public class BasePage {
     WebDriver driver;
     ElementUtil elementutil;
     DriverFactory driverfactory;
-
     Logger log = LoggerHelper.getLogger(BasePage.class);
-    public BasePage(){
-
-    }
     public BasePage(String browserName) {
         driverfactory=new DriverFactory();
         this.driver=driverfactory.init_Driver(browserName);
         elementutil=new ElementUtil(this.driver);
     }
 
-    public void launchBrowser(String browserName){
-        this.driver=driverfactory.init_Driver(browserName);
-        elementutil=new ElementUtil(this.driver);
-    }
-
     public WebDriver getWebDriver() {
-        System.out.println("@@@@###"+this.driver);
         return this.driver;
     }
 }

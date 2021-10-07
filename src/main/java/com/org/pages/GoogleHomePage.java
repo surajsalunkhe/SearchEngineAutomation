@@ -5,6 +5,7 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import com.org.util.ElementUtil;
+import org.openqa.selenium.support.PageFactory;
 
 
 public class GoogleHomePage {
@@ -16,11 +17,10 @@ public class GoogleHomePage {
 	 private By searchboxGoogle=By.xpath("//input[@title='Search']");
 	 private By searchButtonGoogle=By.xpath("//input[@name='btnK'and @type='submit']");
 	 private By searchResultsByGoogle=By.xpath("//div[@id='search']//a[@href]");
-	 private By Bing_SearchBox=By.xpath("/div[@id='search']//a[@href]");
 	
 	public GoogleHomePage(WebDriver driver) {
-		this.driver=driver;
-		elementutil=new ElementUtil(this.driver);
+		PageFactory.initElements(driver, this);
+		elementutil=new ElementUtil(driver);
 	}
 	public void lauchAppUrl(String url)
 	{
@@ -29,7 +29,7 @@ public class GoogleHomePage {
 	}
 
 	public void enterKeywordAndSearch(String keyword){
-		log.info("Entering keyword and clicking on matching result");
+		log.info("Enter keyword and clicking on matching result");
 		elementutil.doSendKeys(searchboxGoogle,keyword);
 	}
 

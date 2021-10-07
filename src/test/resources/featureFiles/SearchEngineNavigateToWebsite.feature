@@ -1,9 +1,15 @@
 @userflow
 Feature: Search Engine Website Navigation
 
-
-  Scenario:: User search result in search engine and click on first result
-    Given User opens the "chrome"
+  Scenario Outline:: User search result in search engine and click on first result
+    Given User opens the "<browser>" browser
     And Navigate to url "https://google.com"
-    And User enter "fiserv" to search in search Engine
-    Then User quite the browser
+    And User enter "<keyword>" to search in search Engine
+    When User click on first search suggestion
+    And User clicks on matching "<keyword>" search result
+    Then verify user redirected to "<keyword>" provided website
+    And User quite the browser
+
+    Examples:
+      |browser|searchEngine|keyword|
+      |chrome |google       |fiserv|

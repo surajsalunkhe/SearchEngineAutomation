@@ -19,29 +19,16 @@ public class StepDefination {
 	SearchResultWebsite searchResultWebsite;
 	GoogleSearchResult googleSearchResult;
 
-	//WebDriver ldriver=basePage.getWebDriver();
-	//GoogleHomePage googleHomePage=new GoogleHomePage(ldriver);
-	//SearchResultWebsite searchResultWebsite=new SearchResultWebsite(ldriver);
-	//GoogleSearchResult googleSearchResult=new GoogleSearchResult(ldriver);
 
-	@Given("User opens the {string}")
+	@Given("User opens the {string} browser")
 	public void user_open_browser(String browserName){
-		 basePage=new BasePage(browserName);
-		WebDriver ldriver=basePage.getWebDriver();
-		googleHomePage = new GoogleHomePage(ldriver);
-		searchResultWebsite=new SearchResultWebsite(ldriver);
-		googleSearchResult =new GoogleSearchResult(ldriver);
-		//basePage.launchBrowser(browserName);
+		basePage=new BasePage(browserName);
 	}
 
 	@Given("Navigate to url {string}")
 	public void login_to_url(String url) {
+		googleHomePage = new GoogleHomePage(basePage.getWebDriver());
 		googleHomePage.lauchAppUrl(url);
-	}
-
-	@Given("User navigate to search engine")
-	public void user_navigate_to_search_engine() {
-		System.out.println("Navigated to search engine");
 	}
 
 	@Given("User enter {string} to search in search Engine")
@@ -51,6 +38,7 @@ public class StepDefination {
 
 	@Given("User click on first search suggestion")
 	public void user_click_on_first_suggestion() {
+		googleSearchResult =new GoogleSearchResult(basePage.getWebDriver());
 		googleSearchResult.userClickOnFirstResult();
 	}
 
@@ -65,9 +53,11 @@ public class StepDefination {
 	}
 	@Then("verify user redirected to {string} provided website")
 	public void verify_user_redirected_to_website(String keyword){
+		searchResultWebsite=new SearchResultWebsite(basePage.getWebDriver());
 		searchResultWebsite.acceptWebsiteCookies();
 		String websiteTitle=searchResultWebsite.getWebsiteTitle();
 		String websiteUrl=searchResultWebsite.getWebsiteUrl();
+		Assert.assertTrue(websiteUrl.contains(keyword));
 		Assert.assertEquals("Website URL Not matched",dataManager.getDataProperty("WebSiteURL"),websiteUrl);
 		Assert.assertEquals("WebPage Title Not matched",dataManager.getDataProperty("WebSiteTitle"),websiteTitle);
 	}

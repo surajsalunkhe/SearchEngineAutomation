@@ -1,5 +1,0 @@
-2021-10-07 18:44:36,097  INFO [main] GoogleHomePage:27 - Opening URL
-2021-10-07 18:44:36,104  INFO [main] ElementUtil:19 - Navigating to Url=https://google.com
-2021-10-07 18:44:41,530  INFO [main] GoogleHomePage:32 - Entering keyword and clicking on matching result
-2021-10-07 18:44:41,568  INFO [main] ElementUtil:62 - Enterint Text in Field=fiserv
-2021-10-07 18:44:41,878  INFO [main] GoogleHomePage:45 - Quit the browser
