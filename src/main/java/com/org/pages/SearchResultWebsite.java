@@ -5,6 +5,7 @@ import com.org.util.ElementUtil;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 
 public class SearchResultWebsite {
     WebDriver driver;
@@ -13,7 +14,7 @@ public class SearchResultWebsite {
     private By acceptCookies=By.xpath("//button[@id='_evidon-decline-button']");
 
     public SearchResultWebsite(WebDriver driver) {
-        this.driver=driver;
+        PageFactory.initElements(driver, this);
         elementutil=new ElementUtil(driver);
     }
 

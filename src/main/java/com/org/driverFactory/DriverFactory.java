@@ -16,8 +16,8 @@ import org.openqa.selenium.safari.SafariDriver;
 public class DriverFactory {
 	//WebDriver driver;
 	static ThreadLocal<WebDriver> tldriver = new ThreadLocal<WebDriver>();
-	public static String browser=System.getProperty("browser");
-	public static String searchEngine=System.getProperty("searchEngine");
+	/*public static String browser=System.getProperty("browser");
+	public static String searchEngine=System.getProperty("searchEngine");*/
 	public static String environment=System.getProperty("env");
 
 	/**
@@ -27,10 +27,8 @@ public class DriverFactory {
 	 * param browser
 	 * return this will return tlDriver
 	 */
-	public WebDriver init_Driver(Properties prop) {
-		System.out.println("Browser="+browser+"\tSarchEngine="+searchEngine+"\tenvironment="+environment);
-		String browserType=browser.toLowerCase();
-		String searchEngineType=searchEngine.toLowerCase();
+	public WebDriver init_Driver(String browserName) {
+		String browserType=browserName.toLowerCase();
 		switch (browserType){
 			case "chrome":
 						ChromeOptions chromeOptions = new ChromeOptions();
@@ -59,7 +57,6 @@ public class DriverFactory {
 		getDriver().manage().window().maximize();
 		getDriver().manage().deleteAllCookies();
 		getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		getDriver().get(prop.getProperty(searchEngineType));
 		return getDriver();
 
 	}
