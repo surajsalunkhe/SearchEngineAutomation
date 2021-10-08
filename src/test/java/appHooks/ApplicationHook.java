@@ -3,7 +3,6 @@ package appHooks;
 import java.io.IOException;
 import java.util.Properties;
 
-import com.org.pages.BasePage;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -25,7 +24,6 @@ public class ApplicationHook {
 	Properties prop;
 	DriverFactory driverfactory;
 	WebDriver driver;
-	BasePage basePage;
 	
 	@Before(order=0)
 	public void setUpConfig()

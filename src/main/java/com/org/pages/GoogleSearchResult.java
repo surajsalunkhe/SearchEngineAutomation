@@ -14,6 +14,7 @@ public class GoogleSearchResult {
     private By selectFromSuggestionGoogle=By.xpath("//div[@role='presentation']//div[@role='option']");
 
     public GoogleSearchResult(WebDriver driver) {
+        this.driver=driver;
         PageFactory.initElements(driver, this);
         elementutil=new ElementUtil(driver);
     }

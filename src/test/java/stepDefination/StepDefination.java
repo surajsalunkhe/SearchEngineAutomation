@@ -1,7 +1,9 @@
 package stepDefination;
-import com.org.pages.*;
 import com.org.driverFactory.DriverFactory;
+import com.org.managers.PageObjectManager;
+import com.org.pages.*;
 import com.org.util.DataManager;
+import com.org.util.ElementUtil;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -13,21 +15,27 @@ Author: Suraj Salunkhe
 Date:26th Sep 2021
 */
 public class StepDefination {
-	DataManager dataManager=new DataManager();
-	BasePage basePage;
+
+	WebDriver driver;
 	GoogleHomePage googleHomePage;
 	SearchResultWebsite searchResultWebsite;
 	GoogleSearchResult googleSearchResult;
+	PageObjectManager pageObjectManager;
+	ElementUtil elementUtil;
+	DataManager dataManager=new DataManager();
+	DriverFactory driverFactory=new DriverFactory();
 
 
 	@Given("User opens the {string} browser")
 	public void user_open_browser(String browserName){
-		basePage=new BasePage(browserName);
+		//basePage=new BasePage(browserName);
+		driver=driverFactory.init_Driver(browserName);
+		pageObjectManager=new PageObjectManager(driver);
 	}
 
 	@Given("Navigate to url {string}")
 	public void login_to_url(String url) {
-		googleHomePage = new GoogleHomePage(basePage.getWebDriver());
+		googleHomePage = pageObjectManager.getGoogleHomePage(driver);
 		googleHomePage.lauchAppUrl(url);
 	}
 
@@ -38,7 +46,7 @@ public class StepDefination {
 
 	@Given("User click on first search suggestion")
 	public void user_click_on_first_suggestion() {
-		googleSearchResult =new GoogleSearchResult(basePage.getWebDriver());
+		googleSearchResult =pageObjectManager.getGoogleSearchResult(driver);
 		googleSearchResult.userClickOnFirstResult();
 	}
 
@@ -53,7 +61,7 @@ public class StepDefination {
 	}
 	@Then("verify user redirected to {string} provided website")
 	public void verify_user_redirected_to_website(String keyword){
-		searchResultWebsite=new SearchResultWebsite(basePage.getWebDriver());
+		searchResultWebsite=pageObjectManager.getSearchResultWebsite(driver);
 		searchResultWebsite.acceptWebsiteCookies();
 		String websiteTitle=searchResultWebsite.getWebsiteTitle();
 		String websiteUrl=searchResultWebsite.getWebsiteUrl();
