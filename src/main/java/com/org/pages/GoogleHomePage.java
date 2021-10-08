@@ -19,6 +19,7 @@ public class GoogleHomePage {
 	 private By searchResultsByGoogle=By.xpath("//div[@id='search']//a[@href]");
 	
 	public GoogleHomePage(WebDriver driver) {
+		this.driver=driver;
 		PageFactory.initElements(driver, this);
 		elementutil=new ElementUtil(driver);
 	}

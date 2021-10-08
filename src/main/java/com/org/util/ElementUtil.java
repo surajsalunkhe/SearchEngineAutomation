@@ -59,7 +59,7 @@ public class ElementUtil {
 
 	public void doSendKeys(By locator, String input) {
 		WebElement wb = getElement(locator);
-		log.info("Enterint Text in Field="+input);
+		log.info("Entering Text in Field="+input);
 		wb.sendKeys(input);
 	}
 

@@ -14,6 +14,7 @@ public class SearchResultWebsite {
     private By acceptCookies=By.xpath("//button[@id='_evidon-decline-button']");
 
     public SearchResultWebsite(WebDriver driver) {
+        this.driver=driver;
         PageFactory.initElements(driver, this);
         elementutil=new ElementUtil(driver);
     }
