@@ -2,8 +2,7 @@ package stepDefination;
 import com.org.driverFactory.DriverFactory;
 import com.org.managers.PageObjectManager;
 import com.org.pages.*;
-import com.org.util.DataManager;
-import com.org.util.ElementUtil;
+import com.org.util.PropertiesFileManager;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -21,8 +20,6 @@ public class StepDefination {
 	SearchResultWebsite searchResultWebsite;
 	GoogleSearchResult googleSearchResult;
 	PageObjectManager pageObjectManager;
-	ElementUtil elementUtil;
-	DataManager dataManager=new DataManager();
 	DriverFactory driverFactory=new DriverFactory();
 
 
@@ -34,7 +31,16 @@ public class StepDefination {
 	}
 
 	@Given("Navigate to url {string}")
-	public void login_to_url(String url) {
+	public void login_to_url(String searchEngine) {
+		String url;
+		String obj;
+		if(searchEngine.equalsIgnoreCase("google")){
+			obj="google";
+			url="https://google.com";
+		}else{
+			obj="bing";
+			url="https://bing.com";
+		}
 		googleHomePage = pageObjectManager.getGoogleHomePage(driver);
 		googleHomePage.lauchAppUrl(url);
 	}
@@ -46,8 +52,7 @@ public class StepDefination {
 
 	@Given("User click on first search suggestion")
 	public void user_click_on_first_suggestion() {
-		googleSearchResult =pageObjectManager.getGoogleSearchResult(driver);
-		googleSearchResult.userClickOnFirstResult();
+		googleHomePage.userClickOnFirstResult();
 	}
 
 	@When("User click on search button")
@@ -57,7 +62,8 @@ public class StepDefination {
 
 	@When("User clicks on matching {string} search result")
 	public void user_clicks_on_matching_search_result(String keyword){
-		googleHomePage.userClicksonMatchingSearchResult(keyword);
+		googleSearchResult =pageObjectManager.getGoogleSearchResult(driver);
+		googleSearchResult.userClicksonMatchingSearchResult(keyword);
 	}
 	@Then("verify user redirected to {string} provided website")
 	public void verify_user_redirected_to_website(String keyword){
@@ -66,8 +72,8 @@ public class StepDefination {
 		String websiteTitle=searchResultWebsite.getWebsiteTitle();
 		String websiteUrl=searchResultWebsite.getWebsiteUrl();
 		Assert.assertTrue(websiteUrl.contains(keyword));
-		Assert.assertEquals("Website URL Not matched",dataManager.getDataProperty("WebSiteURL"),websiteUrl);
-		Assert.assertEquals("WebPage Title Not matched",dataManager.getDataProperty("WebSiteTitle"),websiteTitle);
+		Assert.assertEquals("Website URL Not matched", PropertiesFileManager.getPropertyValue("WebSiteURL"),websiteUrl);
+		Assert.assertEquals("WebPage Title Not matched", PropertiesFileManager.getPropertyValue("WebSiteTitle"),websiteTitle);
 	}
 
 	@Then("User quite the browser")

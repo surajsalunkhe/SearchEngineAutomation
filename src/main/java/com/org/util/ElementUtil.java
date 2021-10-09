@@ -138,6 +138,10 @@ public class ElementUtil {
 			System.out.println("Unable to click on element "+ e.getStackTrace());
 		}
 	}
+	public void scrollWebapage(){
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,250)", "");
+	}
 	public void quitBrowser(){
 		driver.quit();
 	}

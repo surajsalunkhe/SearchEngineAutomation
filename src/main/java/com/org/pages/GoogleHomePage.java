@@ -1,5 +1,6 @@
 package com.org.pages;
 
+import com.org.Interfaces.IHomePage;
 import com.org.helper.LoggerHelper;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
@@ -8,15 +9,15 @@ import com.org.util.ElementUtil;
 import org.openqa.selenium.support.PageFactory;
 
 
-public class GoogleHomePage {
+public class GoogleHomePage implements IHomePage {
 	WebDriver driver;
 	ElementUtil elementutil;
 	Logger log = LoggerHelper.getLogger(GoogleHomePage.class);
 
 
-	 private By searchboxGoogle=By.xpath("//input[@title='Search']");
-	 private By searchButtonGoogle=By.xpath("//input[@name='btnK'and @type='submit']");
-	 private By searchResultsByGoogle=By.xpath("//div[@id='search']//a[@href]");
+	 private By google_SearchBox =By.xpath("//input[@title='Search']");
+	 private By google_searchButton =By.xpath("//input[@name='btnK'and @type='submit']");
+	 private By google_searchResultList =By.xpath("//div[@role='presentation']//div[@role='option']");
 	
 	public GoogleHomePage(WebDriver driver) {
 		this.driver=driver;
@@ -25,23 +26,24 @@ public class GoogleHomePage {
 	}
 	public void lauchAppUrl(String url)
 	{
-		log.info("Opening URL");
+		log.info("Opening Google Search Engine");
 		elementutil.launchUrl(url);
 	}
 
 	public void enterKeywordAndSearch(String keyword){
 		log.info("Enter keyword and clicking on matching result");
-		elementutil.doSendKeys(searchboxGoogle,keyword);
+		elementutil.doSendKeys(google_SearchBox,keyword);
 	}
 
 	public void userClickOnSearchButton(){
 		log.info("Clicking On Search button");
-		elementutil.doClick(searchButtonGoogle);
+		elementutil.doClick(google_searchButton);
 	}
-	public void userClicksonMatchingSearchResult(String selectResult){
-		log.info("Clicking On Matching search Result button");
-		elementutil.clickOnSearchResult(searchResultsByGoogle);
+
+	public void userClickOnFirstResult(){
+		elementutil.clickOnFirstElementFromList(google_searchResultList);
 	}
+
 	public void quitBrowser(){
 		log.info("Quit the browser");
 		elementutil.quitBrowser();

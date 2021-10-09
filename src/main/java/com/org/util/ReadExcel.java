@@ -18,7 +18,7 @@ public class ReadExcel {
 	
 	public static void main(String[] args) throws IOException {
 		
-		File xlFile = new File(Constants.testdata_path);
+		File xlFile = new File(Constants.TEST_DATA_FILEPATH);
 		FileInputStream input = new FileInputStream(xlFile);
 		XSSFWorkbook book = new XSSFWorkbook(input); // Read the workbook
 		XSSFSheet sheet = book.getSheet("Sheet1");

@@ -3,7 +3,7 @@ Feature: Search Engine Website Navigation
 
   Scenario Outline:: User search result in search engine and click on first result
     Given User opens the "<browser>" browser
-    And Navigate to url "https://google.com"
+    And Navigate to url "<searchEngine>"
     And User enter "<keyword>" to search in search Engine
     When User click on first search suggestion
     And User clicks on matching "<keyword>" search result
