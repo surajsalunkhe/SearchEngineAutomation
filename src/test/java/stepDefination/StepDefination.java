@@ -11,7 +11,7 @@ import org.openqa.selenium.WebDriver;
 
 /*
 Author: Suraj Salunkhe
-Date:26th Sep 2021
+Date:9th Oct 2021
 */
 public class StepDefination {
 
@@ -20,7 +20,10 @@ public class StepDefination {
 	SearchResultWebsite searchResultWebsite;
 	GoogleSearchResult googleSearchResult;
 	PageObjectManager pageObjectManager;
+	BingHomePage bingHomePage;
+	BingSearchResult bingSearchResult;
 	DriverFactory driverFactory=new DriverFactory();
+	static String searchEngine;
 
 
 	@Given("User opens the {string} browser")
@@ -31,39 +34,56 @@ public class StepDefination {
 	}
 
 	@Given("Navigate to url {string}")
-	public void login_to_url(String searchEngine) {
-		String url;
-		String obj;
+	public void login_to_url(String searchEngineFromUser) throws Exception {
+		String url=PropertiesFileManager.getPropertyValue(searchEngineFromUser.toLowerCase());
+		searchEngine=searchEngineFromUser.toLowerCase();
 		if(searchEngine.equalsIgnoreCase("google")){
-			obj="google";
-			url="https://google.com";
+			googleHomePage = pageObjectManager.getGoogleHomePage(driver);
+			googleHomePage.lauchAppUrl(url);
+		}else if(searchEngine.equalsIgnoreCase("bing")){
+			bingHomePage=pageObjectManager.getBingHomePage(driver);
+			bingHomePage.lauchAppUrl(url);
 		}else{
-			obj="bing";
-			url="https://bing.com";
+			throw new Exception("Search Engine Not Supported at this time");
 		}
-		googleHomePage = pageObjectManager.getGoogleHomePage(driver);
-		googleHomePage.lauchAppUrl(url);
 	}
 
 	@Given("User enter {string} to search in search Engine")
 	public void user_enter_to_search_in_search_engine(String keyword) {
-		googleHomePage.enterKeywordAndSearch(keyword);
+		if(searchEngine.equalsIgnoreCase("google")){
+			googleHomePage.enterKeywordAndSearch(keyword);
+		}else if(searchEngine.equalsIgnoreCase("bing")){
+			bingHomePage.enterKeywordAndSearch(keyword);
+		}
 	}
 
 	@Given("User click on first search suggestion")
 	public void user_click_on_first_suggestion() {
-		googleHomePage.userClickOnFirstResult();
+		if(searchEngine.equalsIgnoreCase("google")){
+			googleHomePage.userClickOnFirstResult();
+		}else if(searchEngine.equalsIgnoreCase("bing")){
+			bingHomePage.userClickOnFirstResult();
+		}
 	}
 
 	@When("User click on search button")
 	public void user_click_on_search_button() {
-		googleHomePage.userClickOnSearchButton();
+		if(searchEngine.equalsIgnoreCase("google")){
+			googleHomePage.userClickOnSearchButton();
+		}else if(searchEngine.equalsIgnoreCase("bing")){
+			bingHomePage.userClickOnSearchButton();
+		}
 	}
 
 	@When("User clicks on matching {string} search result")
 	public void user_clicks_on_matching_search_result(String keyword){
-		googleSearchResult =pageObjectManager.getGoogleSearchResult(driver);
-		googleSearchResult.userClicksonMatchingSearchResult(keyword);
+		if(searchEngine.equalsIgnoreCase("google")){
+			googleSearchResult =pageObjectManager.getGoogleSearchResult(driver);
+			googleSearchResult.userClicksonMatchingSearchResult(keyword);
+		}else if(searchEngine.equalsIgnoreCase("bing")){
+			bingSearchResult=pageObjectManager.getBingSearchResult(driver);
+			bingSearchResult.userClicksonMatchingSearchResult(keyword);
+		}
 	}
 	@Then("verify user redirected to {string} provided website")
 	public void verify_user_redirected_to_website(String keyword){
@@ -78,11 +98,10 @@ public class StepDefination {
 
 	@Then("User quite the browser")
 	public void quit_the_browser(){
-		googleHomePage.quitBrowser();
+		if(searchEngine.equalsIgnoreCase("google")){
+			googleHomePage.quitBrowser();
+		}else if(searchEngine.equalsIgnoreCase("bing")){
+			bingHomePage.quitBrowser();
+		}
 	}
-
-
-
 }
-
-

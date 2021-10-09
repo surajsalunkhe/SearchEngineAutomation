@@ -12,4 +12,4 @@ Feature: Search Engine Website Navigation
 
     Examples:
       |browser|searchEngine|keyword|
-      |chrome |google       |fiserv|
+      |chrome |bing       |fiserv|

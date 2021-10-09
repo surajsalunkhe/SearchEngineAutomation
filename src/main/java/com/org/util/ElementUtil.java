@@ -125,17 +125,18 @@ public class ElementUtil {
 	public void safeJavaScriptClick(WebElement element){
 		try {
 			if (element.isEnabled() && element.isDisplayed()) {
-				System.out.println("Clicking on element with using java script executor");
+				log.info("Clicking on element with using java script executor");
 				((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
 			} else {
-				System.out.println("Unable to click on element");
+				log.info("Unable to click on element");
+
 			}
 		} catch (StaleElementReferenceException e) {
-			System.out.println("Element is not attached to the page document "+ e.getStackTrace());
+			log.info("Element is not attached to the page document "+ e.getStackTrace());
 		} catch (NoSuchElementException e) {
-			System.out.println("Element was not found in DOM "+ e.getStackTrace());
+			log.info("Element was not found in DOM "+ e.getStackTrace());
 		} catch (Exception e) {
-			System.out.println("Unable to click on element "+ e.getStackTrace());
+			log.info("Unable to click on element "+ e.getStackTrace());
 		}
 	}
 	public void scrollWebapage(){
