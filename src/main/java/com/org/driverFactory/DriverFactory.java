@@ -16,7 +16,6 @@ public class DriverFactory {
 	static ThreadLocal<WebDriver> tldriver = new ThreadLocal<WebDriver>();
 	/*public static String browser=System.getProperty("browser");
 	public static String searchEngine=System.getProperty("searchEngine");*/
-	public static String environment=System.getProperty("env");
 
 	/**
 	 * This method is used to initialize the threadlocal driver on the basis of
@@ -61,6 +60,10 @@ public class DriverFactory {
 
 	public static WebDriver getDriver() {
 		return tldriver.get();
+	}
+	public static String returnEnvironment(){
+		String environment=System.getProperty("env");
+		return environment;
 	}
 
 }

@@ -3,13 +3,11 @@ package appHooks;
 import java.io.IOException;
 import java.util.Properties;
 
+import com.org.util.ReadPropertiesFile;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-
 import com.org.driverFactory.DriverFactory;
-import com.org.util.ConfigPropertyReader;
-
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
@@ -18,18 +16,14 @@ Author: Suraj Salunkhe
 Date:26th July 2021
 */
 public class ApplicationHook {
-	
-
-	ConfigPropertyReader config;
-	Properties prop;
 	DriverFactory driverfactory;
 	WebDriver driver;
+	ReadPropertiesFile readPropertiesFile;
 	
 	@Before(order=0)
 	public void setUpConfig()
 	{
-		config=new ConfigPropertyReader();
-		 prop=config.getProperty();
+		readPropertiesFile=new ReadPropertiesFile();
 	}
 	/*@Before(order=1)
 	public void setUpWebDriver()
