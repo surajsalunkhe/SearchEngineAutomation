@@ -2,7 +2,7 @@ package stepDefination;
 import com.org.driverFactory.DriverFactory;
 import com.org.managers.PageObjectManager;
 import com.org.pages.*;
-import com.org.util.ReadPropertiesFile;
+import com.org.util.PropertiesFileManager;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -72,8 +72,8 @@ public class StepDefination {
 		String websiteTitle=searchResultWebsite.getWebsiteTitle();
 		String websiteUrl=searchResultWebsite.getWebsiteUrl();
 		Assert.assertTrue(websiteUrl.contains(keyword));
-		Assert.assertEquals("Website URL Not matched",ReadPropertiesFile.getPropertyValue("WebSiteURL"),websiteUrl);
-		Assert.assertEquals("WebPage Title Not matched",ReadPropertiesFile.getPropertyValue("WebSiteTitle"),websiteTitle);
+		Assert.assertEquals("Website URL Not matched", PropertiesFileManager.getPropertyValue("WebSiteURL"),websiteUrl);
+		Assert.assertEquals("WebPage Title Not matched", PropertiesFileManager.getPropertyValue("WebSiteTitle"),websiteTitle);
 	}
 
 	@Then("User quite the browser")

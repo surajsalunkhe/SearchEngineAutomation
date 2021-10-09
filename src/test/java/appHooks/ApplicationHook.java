@@ -1,9 +1,8 @@
 package appHooks;
 
 import java.io.IOException;
-import java.util.Properties;
 
-import com.org.util.ReadPropertiesFile;
+import com.org.util.PropertiesFileManager;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -18,12 +17,13 @@ Date:26th July 2021
 public class ApplicationHook {
 	DriverFactory driverfactory;
 	WebDriver driver;
-	ReadPropertiesFile readPropertiesFile;
+	PropertiesFileManager readPropertiesFile;
 	
 	@Before(order=0)
 	public void setUpConfig()
 	{
-		readPropertiesFile=new ReadPropertiesFile();
+
+		readPropertiesFile=new PropertiesFileManager();
 	}
 	/*@Before(order=1)
 	public void setUpWebDriver()
