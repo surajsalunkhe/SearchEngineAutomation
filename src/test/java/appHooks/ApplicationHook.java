@@ -43,7 +43,8 @@ public class ApplicationHook {
 		}
 		
 	}
-	@Before
+	//Added code to check removal of Result output Directory once project run
+	/*@Before
 	public void clearReportFolder(){
 		File myfile=new File(Constants.REPORT_FOLDER);
 		try {
@@ -51,7 +52,7 @@ public class ApplicationHook {
 		} catch (IOException e) {
 			System.out.println("Folder not found for deletion");
 		}
-	}
+	}*/
 	
 	@After (value="@smoke and @regression",order=0)
 	public void tearDown() {
