@@ -1,6 +1,5 @@
-@userflow
 Feature: Search Engine Website Navigation
-
+  @multiBrowser
   Scenario Outline:: User search result in search engine and click on first result
     Given User opens the "<browser>" browser
     And Navigate to url "<searchEngine>"
@@ -12,4 +11,8 @@ Feature: Search Engine Website Navigation
 
     Examples:
       |browser|searchEngine|keyword|
+      |safari |google       |fiserv|
+      |safari |bing         |fiserv|
       |chrome |google       |fiserv|
+      |chrome |bing         |fiserv|
+      |firefox|google       |fiserv|

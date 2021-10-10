@@ -14,6 +14,7 @@ import org.openqa.selenium.safari.SafariDriver;
 public class DriverFactory {
 	//WebDriver driver;
 	static ThreadLocal<WebDriver> tldriver = new ThreadLocal<WebDriver>();
+	DesiredCapabilities caps;
 	/*public static String browser=System.getProperty("browser");
 	public static String searchEngine=System.getProperty("searchEngine");*/
 
@@ -53,7 +54,7 @@ public class DriverFactory {
 		}
 		getDriver().manage().window().maximize();
 		getDriver().manage().deleteAllCookies();
-		getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		//getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		return getDriver();
 
 	}
