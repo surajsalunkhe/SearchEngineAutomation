@@ -12,6 +12,7 @@ public class SearchResultWebsite {
     ElementUtil elementutil;
     Logger log = LoggerHelper.getLogger(SearchResultWebsite.class);
     private By acceptCookies=By.xpath("//button[@id='_evidon-decline-button']");
+    private By websiteLogo=By.xpath("//img[@alt='Fiserv Logo']");
 
     public SearchResultWebsite(WebDriver driver) {
         this.driver=driver;
@@ -30,6 +31,10 @@ public class SearchResultWebsite {
     public String getWebsiteUrl(){
         log.info("Get Website URL");
         return elementutil.getUrlOfWebsite();
+    }
+    public void waitWebsiteToLoad(){
+        log.info("wait till webpage completely loaded");
+        elementutil.waitTillDisplay(websiteLogo,10);
     }
 
 }

@@ -10,9 +10,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ElementUtil {
 	WebDriver driver;
+	JavascriptExecutor js;
 	Logger log = LoggerHelper.getLogger(ElementUtil.class);
 	public ElementUtil(WebDriver driver) {
 		this.driver = driver;
+		js = (JavascriptExecutor) driver;
 	}
 
 	public void launchUrl(String url) {
@@ -24,7 +26,7 @@ public class ElementUtil {
 		return driver.getTitle();
 	}
 	public String getUrlOfWebsite(){
-		JavascriptExecutor js=(JavascriptExecutor) driver;
+		js=(JavascriptExecutor) driver;
 		String url= (String) js.executeScript("return document.URL");
 		log.info("Website URl="+url);
 		return url;
@@ -43,12 +45,13 @@ public class ElementUtil {
 
 	public void doClickIfPresent(By locator) {
 		try {
-			WebDriverWait wait = new WebDriverWait(driver,3);
+			WebDriverWait wait = new WebDriverWait(driver,10);
 			wait.until(ExpectedConditions.presenceOfElementLocated(locator));
 			WebElement wb = getElement(locator);
 			log.info("Clicking WebElement If present");
 			wb.click();
 		} catch (Exception e) {
+			log.info("Element not found"+e.getStackTrace());
 		}
 	}
 
@@ -86,7 +89,7 @@ public class ElementUtil {
 	public void selectItemInElementList(By locator, String itemName) {
 		List<WebElement> filterOption = getElements(locator);
 		for (WebElement option : filterOption) {
-			//System.out.println(option.getText());
+			log.info("Values from list:"+option.getText());
 			if (option.getText().equalsIgnoreCase(itemName)) {
 				option.click();
 				break;
@@ -97,7 +100,7 @@ public class ElementUtil {
 	public void selectItemWhenContainsInElementList(By locator, String itemName) {
 		List<WebElement> filterOption = getElements(locator);
 		for (WebElement option : filterOption) {
-			//System.out.println(option.getText());
+			log.info("Values from list:"+option.getText());
 			if (option.getText().contains(itemName)) {
 				option.click();
 				break;
@@ -105,6 +108,7 @@ public class ElementUtil {
 		}
 	}
 	public void clickOnFirstElementFromList(By locator){
+		waitTillDisplay(locator,5);
 		List<WebElement> filterOption = getElements(locator);
 		WebElement element=filterOption.get(0);
 		log.info("Clicking on first element from list ="+element.getText());
@@ -118,15 +122,16 @@ public class ElementUtil {
 		try {
 			log.info("Clicking on first result using JS executor ="+element.getText());
 			safeJavaScriptClick(element);
+			Thread.sleep(3000);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.info("Unable to click "+ e.getStackTrace());
 		}
 	}
 	public void safeJavaScriptClick(WebElement element){
 		try {
 			if (element.isEnabled() && element.isDisplayed()) {
 				log.info("Clicking on element with using java script executor");
-				((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+				js.executeScript("arguments[0].click();", element);
 			} else {
 				log.info("Unable to click on element");
 
@@ -140,8 +145,15 @@ public class ElementUtil {
 		}
 	}
 	public void scrollWebapage(){
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("window.scrollBy(0,250)", "");
+		js.executeScript("window.scrollBy(0,500)", "");
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+	public void waitForWebPageLoad(){
+		js.executeScript("return document.readyState").equals("complete");
 	}
 	public void quitBrowser(){
 		driver.quit();

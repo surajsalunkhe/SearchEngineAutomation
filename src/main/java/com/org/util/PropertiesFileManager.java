@@ -37,7 +37,8 @@ public class PropertiesFileManager {
     }
     public static String getPropertyValue(String key) {
         String value = null;
-        String environment = DriverFactory.returnEnvironment();
+        String environment=null;
+        environment=DriverFactory.returnEnvironment()==null?"stage":DriverFactory.returnEnvironment();
         List<String> results = new ArrayList<String>();
         File[] files = new File(Constants.TEST_RESOURCE_PATH + environment + "/").listFiles();
         //If this pathname does not denote a directory, then listFiles() returns null.

@@ -62,7 +62,7 @@ public class StepDefination {
 		if(searchEngine.equalsIgnoreCase("google")){
 			googleHomePage.userClickOnFirstResult();
 		}else if(searchEngine.equalsIgnoreCase("bing")){
-			bingHomePage.userClickOnFirstResult();
+			bingHomePage.userClickOnSearchButton();
 		}
 	}
 

@@ -13,7 +13,7 @@ public class BingHomePage implements IHomePage {
     ElementUtil elementutil;
     Logger log = LoggerHelper.getLogger(BingHomePage.class);
 
-    private By bing_SearchBox=By.xpath("//input[@title='Search']");
+    private By bing_SearchBox=By.xpath("//input[@id='sb_form_q']");
     private By bing_searchButton =By.xpath("//label[@id='search_icon']");
     private By bing_searchResultList =By.xpath("//div[@class='sa_tm']");
 
