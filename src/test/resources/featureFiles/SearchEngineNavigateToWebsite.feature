@@ -11,8 +11,8 @@ Feature: Search Engine Website Navigation
 
     Examples:
       |browser|searchEngine|keyword|
-      |safari |google       |fiserv|
-      |safari |bing         |fiserv|
       |chrome |google       |fiserv|
       |chrome |bing         |fiserv|
+      |safari |google       |fiserv|
+      |safari |bing         |fiserv|
       |firefox|google       |fiserv|

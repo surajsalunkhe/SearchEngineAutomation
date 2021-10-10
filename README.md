@@ -10,8 +10,8 @@ Project Component:
   - Driver Factory Library - Initalize required ThreadLocal WebDriver depends on browser.
   - Component Library      - Provide all required element wrapper methods.
   - Element Utility        - Provide all required element action wrapper utility.
-  - ConfigReader           - Library that read properties from property file.
-  - Data Manager           - Library that read and store the values Data file 
+  - PropertiesFileManager  - Library that read properties from property file and store value in file
+   -Excel Reader(Read Excel,Write Excel) Read and Write excel value
   
   
     feature Files              : Cucumber Feature file holds all required Cucumber feature file.
@@ -22,6 +22,7 @@ Project Component:
                                 
     Page Library              : Page Classes for POM
                                 /src/main/java/com/org/pages
+                                Added pages for Chrome,Bing,Yahoo
                                 
     Constant Library           : All input data  to be tried out by various test methods woulbe be going into this directory
                                  /src/main/java/com/org/util/Constants.java
@@ -43,9 +44,11 @@ Project Component:
     Utility                 :  All required utility for Constant Reading,Read Data From Excel, Read Properties File, Element Util for Selenium Functions
                                /src/main/java/com/org/util/ExcelReader.java
                                /src/main/java/com/org/util/ElementUtil.java
-                               src/main/java/com/org/util/DataManager.java
-                               src/main/java/com/org/util/ConfigPropertyReader.java
-                               src/main/java/com/org/util/CommonUtility.java
+                               /src/main/java/com/org/util/DataManager.java
+                               /src/main/java/com/org/util/ConfigPropertyReader.java
+                               /src/main/java/com/org/util/CommonUtility.java
+                               /src/main/java/com/org/util/Constants.java
+                               src/main/java/com/org/util/PropertiesFileManager.java
                                
                                 
                                 
@@ -68,7 +71,7 @@ Execution:
   - To Execute All the Feature file navigate to /src/test/java/TestRunner/TestRunner.java class and execute with help of JUnit 4.
   - To execute specific Feature file, mention the required feature file in TestRunner.java class and run with JUnit 4.
   - To Execute on Maven   ```mvn clean test```
-     with Tag on Chrome Browser:
-             ```mvn clean integration-test -Dbrowser=chrome -Denv=stage -DsearchEngine=google -Dcucumber.options=--tags @regression```
-     Single Feature File Run on Firefox Browser:
-            ```mvn clean integration-test -Dbrowser=firefox -Denv=stage -DsearchEngine=google -Dcucumber.options=src/test/resources/featureFiles/SearchEngineNavigateToWebsite.feature```             
+    To Run on specified enviornemnt with Assertion from env folder File.
+        ```clean integration-test -Denv=stage -Dcucumber.options=src/test/resources/featureFiles/SearchEngineNavigateToWebsite.feature "-Dcucumber.options=--tags @multiBrowser" -f pom.xml```
+    User can specify broswer to run TC else default chrome will be chosen for TC automation.
+  -Run script by right click on feature file.
