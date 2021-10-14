@@ -28,7 +28,6 @@ public class StepDefination {
 
 	@Given("User opens the {string} browser")
 	public void user_open_browser(String browserName){
-		//basePage=new BasePage(browserName);
 		driver=driverFactory.init_Driver(browserName);
 		pageObjectManager=new PageObjectManager(driver);
 	}
@@ -38,10 +37,10 @@ public class StepDefination {
 		String url=PropertiesFileManager.getPropertyValue(searchEngineFromUser.toLowerCase());
 		searchEngine=searchEngineFromUser.toLowerCase();
 		if(searchEngine.equalsIgnoreCase("google")){
-			googleHomePage = pageObjectManager.getGoogleHomePage(driver);
+			googleHomePage = pageObjectManager.getGoogleHomePage();
 			googleHomePage.lauchAppUrl(url);
 		}else if(searchEngine.equalsIgnoreCase("bing")){
-			bingHomePage=pageObjectManager.getBingHomePage(driver);
+			bingHomePage=pageObjectManager.getBingHomePage();
 			bingHomePage.lauchAppUrl(url);
 		}else{
 			throw new Exception("Search Engine Not Supported at this time");
@@ -78,16 +77,16 @@ public class StepDefination {
 	@When("User clicks on matching {string} search result")
 	public void user_clicks_on_matching_search_result(String keyword){
 		if(searchEngine.equalsIgnoreCase("google")){
-			googleSearchResult =pageObjectManager.getGoogleSearchResult(driver);
+			googleSearchResult =pageObjectManager.getGoogleSearchResult();
 			googleSearchResult.userClicksonMatchingSearchResult(keyword);
 		}else if(searchEngine.equalsIgnoreCase("bing")){
-			bingSearchResult=pageObjectManager.getBingSearchResult(driver);
+			bingSearchResult=pageObjectManager.getBingSearchResult();
 			bingSearchResult.userClicksonMatchingSearchResult(keyword);
 		}
 	}
 	@Then("verify user redirected to {string} provided website")
 	public void verify_user_redirected_to_website(String keyword){
-		searchResultWebsite=pageObjectManager.getSearchResultWebsite(driver);
+		searchResultWebsite=pageObjectManager.getSearchResultWebsite();
 		searchResultWebsite.acceptWebsiteCookies();
 		String websiteTitle=searchResultWebsite.getWebsiteTitle();
 		String websiteUrl=searchResultWebsite.getWebsiteUrl();
