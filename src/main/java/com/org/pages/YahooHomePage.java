@@ -18,11 +18,6 @@ public class YahooHomePage implements IHomePage {
     }
 
     @Override
-    public void lauchAppUrl(String url) {
-
-    }
-
-    @Override
     public void enterKeywordAndSearch(String keyword) {
 
     }
@@ -34,11 +29,6 @@ public class YahooHomePage implements IHomePage {
 
     @Override
     public void userClickOnFirstResult() {
-
-    }
-
-    @Override
-    public void quitBrowser() {
 
     }
 }

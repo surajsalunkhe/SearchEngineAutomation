@@ -24,12 +24,6 @@ public class GoogleHomePage implements IHomePage {
 		PageFactory.initElements(driver, this);
 		elementutil=new ElementUtil(driver);
 	}
-	public void lauchAppUrl(String url)
-	{
-		log.info("Opening Google Search Engine");
-		elementutil.launchUrl(url);
-	}
-
 	public void enterKeywordAndSearch(String keyword){
 		log.info("Enter keyword and clicking on matching result");
 		elementutil.doSendKeys(google_SearchBox,keyword);
@@ -42,10 +36,5 @@ public class GoogleHomePage implements IHomePage {
 
 	public void userClickOnFirstResult(){
 		elementutil.clickOnFirstElementFromList(google_searchResultList);
-	}
-
-	public void quitBrowser(){
-		log.info("Quit the browser");
-		elementutil.quitBrowser();
 	}
 }

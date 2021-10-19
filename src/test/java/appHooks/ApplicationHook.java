@@ -21,7 +21,7 @@ Date:26th July 2021
 */
 public class ApplicationHook {
 	DriverFactory driverfactory;
-	static WebDriver driver;
+	WebDriver driver;
 
 	@Before("@smoke and @regression")
 	public void setUpWebDriver()
@@ -30,7 +30,7 @@ public class ApplicationHook {
 		 driver=driverfactory.init_Driver(PropertiesFileManager.getPropertyValue("broswerName"));
 	}
 	
-	@AfterStep
+	@After
 	public void captureScreenshot(Scenario sc) throws IOException
 	{
 		if(sc.isFailed()) {
@@ -54,8 +54,9 @@ public class ApplicationHook {
 		}
 	}*/
 	
-	@After (value="@smoke and @regression",order=0)
+	@After("@smoke and @regression")
 	public void tearDown() {
+		driver=DriverFactory.getDriver();
 		driver.quit();
 	}
 
