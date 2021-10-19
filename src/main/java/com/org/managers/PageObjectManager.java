@@ -1,6 +1,7 @@
 package com.org.managers;
 
 import com.org.pages.*;
+import com.org.workflows.SearchEngineWorkFlow;
 import org.openqa.selenium.WebDriver;
 /*Author: Suraj Salunkhe
 8th Oct 2021
@@ -15,6 +16,8 @@ public class PageObjectManager {
     private YahooHomePage yahooHomePage;
     private YahooSearchResult yahooSearchResult;
     private SearchResultWebsite searchResultWebsite;
+     SearchEngineWorkFlow searchEngineWorkFlow;
+     private String searchEngine;
 
     public PageObjectManager(WebDriver driver){
         this.driver=driver;

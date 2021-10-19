@@ -1,4 +1,13 @@
-2021-10-14 12:34:10,788  INFO [main] GoogleHomePage:29 - Opening Google Search Engine
-2021-10-14 12:34:10,796  INFO [main] ElementUtil:21 - Navigating to Url=https://google.com
-2021-10-14 12:34:14,880  INFO [main] GoogleHomePage:34 - Enter keyword and clicking on matching result
-2021-10-14 12:34:14,921  INFO [main] ElementUtil:65 - Entering Text in Field=fiserv
+2021-10-19 12:34:24,476  INFO [main] GoogleHomePage:28 - Enter keyword and clicking on matching result
+2021-10-19 12:34:24,529  INFO [main] ElementUtil:65 - Entering Text in Field=fiserv
+2021-10-19 12:34:25,784  INFO [main] ElementUtil:114 - Clicking on first element from list =Fiserv
+2021-10-19 12:34:30,655  INFO [main] GoogleSearchResult:25 - Clicking On Matching search Result button
+2021-10-19 12:34:30,766  INFO [main] ElementUtil:123 - Clicking on first result using JS executor =Fiserv: Financial Services Technology, Mobile Banking ...
+https://www.fiserv.com
+2021-10-19 12:34:30,840  INFO [main] ElementUtil:133 - Clicking on element with using java script executor
+2021-10-19 12:34:42,518  INFO [main] SearchResultWebsite:24 - Accepting web page cookies On Seach button
+2021-10-19 12:34:42,565  INFO [main] ElementUtil:51 - Clicking WebElement If present
+2021-10-19 12:34:42,745  INFO [main] SearchResultWebsite:28 - Get Website Page Title
+2021-10-19 12:34:42,764  INFO [main] ElementUtil:25 - Website Page Title=Financial Services Technology, Mobile Banking, Payments| Fiserv
+2021-10-19 12:34:42,773  INFO [main] SearchResultWebsite:32 - Get Website URL
+2021-10-19 12:34:42,793  INFO [main] ElementUtil:31 - Website URl=https://www.fiserv.com/

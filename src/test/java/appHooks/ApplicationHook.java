@@ -54,7 +54,7 @@ public class ApplicationHook {
 		}
 	}*/
 	
-	@After(order=0)
+	@After("@smoke and @regression")
 	public void tearDown() {
 		driver=DriverFactory.getDriver();
 		driver.quit();

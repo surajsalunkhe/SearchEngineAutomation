@@ -12,8 +12,7 @@ Date:26th Sep 2021
 		features = { "./src/test/resources/featureFiles/MyTest.feature" },
 		glue = {"stepDefination", "appHooks" },
 		plugin = { "pretty", "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:" },
-		dryRun = false,
-		monochrome = true
+		dryRun = false
 )
 public class TestRunnerSearchEngine {
 

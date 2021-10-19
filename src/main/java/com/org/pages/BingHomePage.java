@@ -24,12 +24,6 @@ public class BingHomePage implements IHomePage {
     }
 
     @Override
-    public void lauchAppUrl(String url) {
-        log.info("Opening Bing Search Engine");
-        elementutil.launchUrl(url);
-    }
-
-    @Override
     public void enterKeywordAndSearch(String keyword) {
         log.info("Enter keyword and clicking on matching result");
         elementutil.doSendKeys(bing_SearchBox,keyword);
@@ -44,11 +38,5 @@ public class BingHomePage implements IHomePage {
     @Override
     public void userClickOnFirstResult() {
         elementutil.clickOnFirstElementFromList(bing_searchResultList);
-    }
-
-    @Override
-    public void quitBrowser() {
-        log.info("Quit the browser");
-        elementutil.quitBrowser();
     }
 }

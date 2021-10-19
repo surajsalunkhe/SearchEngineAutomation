@@ -7,7 +7,6 @@ Feature: Search Engine Website Navigation
     When User click on first search suggestion
     And User clicks on matching "<keyword>" search result
     Then verify user redirected to "<keyword>" provided website
-    And User quite the browser
 
     Examples:
       |browser|searchEngine|keyword|
